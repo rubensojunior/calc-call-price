@@ -2,7 +2,7 @@
 
 ## Como testar
 Para testar a aplicação siga as seguintes etapas:
-1-Faça um clone do projeto;
+1-Faça um clone do projeto;<br />
 2-Se a raiz do projeto for somente uma pasta, entre na pasta onde tem os arquivos do projeto;
 3-Com o node instalado na máquina, entre nessa pasta no terminal e execute "npm install" sem aspas;
 4-Após a instalação, execute "npm run serve" sem aspas;
