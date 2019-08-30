@@ -9,19 +9,19 @@
                 <b-row>
                     <b-col md="6" sm="12">
                         <b-form-group>
-                            <b-form-select v-model="codOrigem" :options="optionsCodOrigem"></b-form-select>
+                            <b-form-select v-model="sourceCod" :options="optionsSourceCod"></b-form-select>
                         </b-form-group>
                     </b-col>
                     <b-col md="6" sm="12">
                         <b-form-group>
-                            <b-form-select v-model="codDestino" :options="optionsCodDestino"></b-form-select>
+                            <b-form-select v-model="destinyCod" :options="optionsDestinyCod"></b-form-select>
                         </b-form-group>
                     </b-col>
                 </b-row>
                 <b-row>
                     <b-col md="6" sm="12">
                         <b-form-group>
-                            <b-form-select v-model="plano" :options="optionsPlano"></b-form-select>
+                            <b-form-select v-model="plan" :options="optionsPlan"></b-form-select>
                         </b-form-group>
                     </b-col>
                     <b-col md="6" sm="12">
@@ -36,13 +36,13 @@
                     Limpar</b-button>
             </b-form>
         </div>
-        <div class="result-components" v-if="calculoRealizado">
+        <div class="result-components" v-if="calcReady">
             <ResultComponent class="result-component-element" title="Valor sem FaleMais" 
-                :value="valorTotalSemFm" colorComponent="#ff3300" colorFont="#fff" resultType="semFaleMais" />
+                :value="totalValueWithoutPlan" colorComponent="#ff3300" colorFont="#fff" resultType="semFaleMais" />
             <ResultComponent title="Valor com FaleMais" 
-                :value="valorTotalComFm" colorComponent="#00ff99" colorFont="#000" resultType="comFaleMais" />
+                :value="totalValueWithPlan" colorComponent="#00ff99" colorFont="#000" resultType="comFaleMais" />
         </div>
-        <b-alert :show="showAlert" variant="danger" class="mt-3">{{ erro }}</b-alert>
+        <b-alert :show="showAlert" variant="danger" class="mt-3">{{ error }}</b-alert>
     </div>
 </template>
 
@@ -54,30 +54,30 @@ export default {
     data(){
         return{
             minutos: null,
-            codOrigem: null,
-            codDestino: null,
-            plano: null,
-            valorTotalComFm: '',
-            valorTotalSemFm: '',
-            calculoRealizado: false,
+            sourceCod: null,
+            destinyCod: null,
+            plan: null,
+            totalValueWithPlan: '',
+            totalValueWithoutPlan: '',
+            calcReady: false,
             showAlert: false,
-            erro: '',
-            optionsCodOrigem: [
+            error: '',
+            optionsSourceCod: [
                 { value: null, text: 'Selecione o código de origem' },
                 { text: '011' },
                 { text: '016' },
                 { text: '017' },
                 { text: '018' }
             ],
-            optionsCodDestino: [
+            optionsDestinyCod: [
                 { value: null, text: 'Selecione o código de Destino' },
                 { text: '011' },
                 { text: '016' },
                 { text: '017' },
                 { text: '018' }
             ],
-            optionsPlano: [
-                { value: null, text: 'Selecione um plano FaleMais' },
+            optionsPlan: [
+                { value: null, text: 'Selecione um plan FaleMais' },
                 { text: 'FaleMais 30' },
                 { text: 'FaleMais 60' },
                 { text: 'FaleMais 120' }
@@ -90,30 +90,30 @@ export default {
     },
     methods:{
         calculateCall(){
-            var erros = this.validateForm()
-            if(erros === undefined || erros.length === 0){
-                this.calculoRealizado = true
+            var errors = this.validateForm()
+            if(errors === undefined || errors.length === 0){
+                this.calcReady = true
                 
                 if(this.showAlert)
                     this.showAlert = false
 
-                this.valorTotalComFm = calcCallPriceWithFM(this.codOrigem, this.codDestino, this.plano, this.minutos)
-                this.valorTotalSemFm = calcCallPriceWithoutFM(this.codOrigem,this.codDestino,this.minutos)
+                this.totalValueWithPlan = calcCallPriceWithFM(this.sourceCod, this.destinyCod, this.plan, this.minutos)
+                this.totalValueWithoutPlan = calcCallPriceWithoutFM(this.sourceCod,this.destinyCod,this.minutos)
             }else{
-                this.erro = erros[0]
+                this.error = errors[0]
 
                 this.showAlert = true
 
-                if(this.calculoRealizado)
-                    this.calculoRealizado = false
+                if(this.calcReady)
+                    this.calcReady = false
             }
         },
         validateForm(){
             var error = []
 
-            if(this.codOrigem === undefined || this.codOrigem === null)
+            if(this.sourceCod === undefined || this.sourceCod === null)
                 error.push("Selecione o código de origem para continuar")
-            if(this.codDestino === undefined || this.codDestino === null)
+            if(this.destinyCod === undefined || this.destinyCod === null)
                 error.push("Selecione o código de destino para continuar")
             if(this.minutos === undefined || this.minutos === null)
                 error.push("Preencha o campo de minutos para continuar")
@@ -123,11 +123,11 @@ export default {
             return error
         },
         formClear(){
-            this.codOrigem = null
-            this.codDestino = null
-            this.plano = null
+            this.sourceCod = null
+            this.destinyCod = null
+            this.plan = null
             this.minutos = null
-            this.calculoRealizado = false
+            this.calcReady = false
             this.showAlert = false
         },
         isInt(n){

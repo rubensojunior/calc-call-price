@@ -1,41 +1,41 @@
-function getMinutePrice(codOrigem, codDestino) {
+function getMinutePrice(sourceCod, destinyCod) {
     var minutePrice = 0
 
-    if(codOrigem === '011' && codDestino === '016')
+    if(sourceCod === '011' && destinyCod === '016')
         minutePrice = 1.9
-    else if(codOrigem === '016' && codDestino === '011')
+    else if(sourceCod === '016' && destinyCod === '011')
         minutePrice = 2.9
-    else if(codOrigem === '011' && codDestino === '017')
+    else if(sourceCod === '011' && destinyCod === '017')
         minutePrice = 1.7
-    else if(codOrigem === '017' && codDestino === '011')
+    else if(sourceCod === '017' && destinyCod === '011')
         minutePrice = 2.7
-    else if(codOrigem === '011' && codDestino === '018')
+    else if(sourceCod === '011' && destinyCod === '018')
         minutePrice = 0.9
-    else if(codOrigem === '018' && codDestino === '011')
+    else if(sourceCod === '018' && destinyCod === '011')
         minutePrice = 1.9
 
     return minutePrice
 }
 
-export function calcCallPriceWithFM(codOrigem, codDestino, plano, minutos) {
+export function calcCallPriceWithFM(sourceCod, destinyCod, plan, minutes) {
     var discount = 0
 
-    var minutePrice = getMinutePrice(codOrigem,codDestino)
+    var minutePrice = getMinutePrice(sourceCod,destinyCod)
 
     if(minutePrice === 0)
         return '-'
 
-    if(plano === 'FaleMais 30')
+    if(plan === 'FaleMais 30')
         discount = 30
-    else if(plano === 'FaleMais 60')
+    else if(plan === 'FaleMais 60')
         discount = 60
-    else if(plano === 'FaleMais 120')
+    else if(plan === 'FaleMais 120')
         discount = 120
 
     if(discount === 0)
         return '-'
 
-    var minutesWithDiscount = minutos - discount
+    var minutesWithDiscount = minutes - discount
 
     var totalPrice = 0
 
@@ -45,16 +45,16 @@ export function calcCallPriceWithFM(codOrigem, codDestino, plano, minutos) {
     return totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
 
-export function calcCallPriceWithoutFM(codOrigem, codDestino, minutos) {
-    var minutePrice = getMinutePrice(codOrigem,codDestino)
+export function calcCallPriceWithoutFM(sourceCod, destinyCod, minutes) {
+    var minutePrice = getMinutePrice(sourceCod,destinyCod)
 
     if(minutePrice === 0)
         return '-'
 
     var totalPrice = 0
 
-    if(minutos > 0)
-        totalPrice = minutos * minutePrice
+    if(minutes > 0)
+        totalPrice = minutes * minutePrice
 
     return totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }

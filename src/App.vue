@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<Header title="Telzir" />
+		<Header title="CCP" />
 		<Content />
 		<Footer />
 	</div>
