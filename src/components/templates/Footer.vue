@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-        <span>©2019 - Tezir - v1.0</span>
+        <span>©2019 - CCP - v1.0</span>
     </footer>
 </template>
 
