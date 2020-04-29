@@ -1,17 +1,19 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-import Home from '@/components/home/Home'
+import Home from "@/components/home/Home";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-const routes = [{
-    name: 'home',
-    path: '/',
+const routes = [
+  {
+    name: "home",
+    path: "/",
     component: Home
-}]
+  }
+];
 
 export default new VueRouter({
-    mode: 'hash',
-    routes
-})
+  mode: "hash",
+  routes
+});

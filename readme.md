@@ -1,27 +1,46 @@
-# Telzir Challenge
+<h1 align="center">
+<br>
+Calc Call Price
+</h1>
 
-## Description
-I developed this project in response to a challenge from a company to test the knowledge of job applicants.
+<p align="center">
+This project was created to solve a challenge requested by a company in the hiring process. It is a simple application that calculates call prices for a telephone operator.</p>
 
-## Project setup
-```
-npm install
-```
+<p align="center">
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT">
+  </a>
+</p>
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+[//]: # "Add your gifs/images here:"
 
-### Compiles and minifies for production
-```
-npm run build
-```
+![Screen](repo/imgs/image1.png)
 
-### Lints and fixes files
-```
-npm run lint
-```
+<div>
+  <img src="repo/imgs/image1.png" alt="demo" height="425">
+  <img src="IMAGE_2_URL" alt="demo" height="425">
+</div>
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<hr />
+
+## Features
+
+[//]: # "Add the features of your project here:"
+
+This app features all the latest tools and practices in mobile development!
+
+- ⚛️ **React Js** — A JavaScript library for building user interfaces
+- ⚛️ **React Native** — A lib that provides a way to create native apps for Android and iOS
+- 💹 **Node Js** — A web framework for Node Js
+
+## Getting started
+
+Describe here the way to use/install your project
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) page for details.
+
+---
+
+Created with passion by me 👨🏻‍💻
