@@ -25,9 +25,9 @@ This project was created to solve a challenge requested by a company in the hiri
 
 ## Getting started
 
-Clone project > enter the project folder
-run `yarn`
-run `yarn serve`
+- Clone project > enter the project folder
+- run `yarn`
+- run `yarn serve`
 
 ## License
 
